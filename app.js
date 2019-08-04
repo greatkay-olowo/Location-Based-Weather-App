@@ -1,4 +1,4 @@
-﻿window.addEventListener("load", () => {
+window.addEventListener("load", () => {
     let long;
     let lat;
     let temperatureDescription = document.querySelector(".temperature-description");
@@ -7,10 +7,12 @@
     let temperatureSection = document.querySelector(".temperature");
     let temperatureSpan = document.querySelector(".temperature span");
     let appDate = document.querySelector(".date");
+    let body = document.querySelector('body');
 
 
-
-    if (navigator.geolocation) {
+    if (!navigator.onLine) {
+        body.textContent = 'You are offline';
+    }else if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
